@@ -5,7 +5,7 @@
 This SDK provides conveniet way to communicate between CoinGate API v2 and your Python code.
 
 ## Requirements
-Python 3.9+
+Python 3.7+
 
 ## Installing
 ```
