@@ -34,8 +34,8 @@ class OrderService:
         :param Decimal `price_amount`: The price set by the merchant
         :param str `price_currency`: ISO 4217 currency code which defines the currency in which you wish to price your merchandise; used to define price parameter.
         :param str `receive_currency`: ISO 4217 currency code which defines the currency in which you wish to receive your settlements. Currency conversions are done by CoinGate. Possible values: fiat - EUR; stablecoin - USDT; crypto: BTC, LTC, ETH or DO_NOT_CONVERT. Note: use DO_NOT_CONVERT to keep payments received in original currency (Altcoin payments will be converted to BTC). With DO_NOT_CONVERT you can also extend invoice expiration time up to 24 hours.
-        :param Optional[str] `title`: Max 150 characters. Example: product title (Apple iPhone 6), order id (MyShop Order #12345), cart id
-        :param Optional[str] `description`: More details about this order. Max 500 characters. It can be cart items, product details or other information. Example: 1 x Apple iPhone 6, 1 x Apple MacBook Air.
+        :param Optional[str] `title`: Max 150 characters. Example: product title (Apple iPhone 14), order id (MyShop Order #12345), cart id
+        :param Optional[str] `description`: More details about this order. Max 500 characters. It can be cart items, product details or other information. Example: 1 x Apple iPhone 14, 1 x Apple MacBook Air.
         :param Optional[str] `callback_url`: Send an automated message to Merchant URL when order status is changed.
         :param Optional[str] `cancel_url`: Redirect to Merchant URL when buyer cancels the order
         :param Optional[str] `success_url`: Redirect to Merchant URL after successful payment
@@ -119,7 +119,7 @@ class OrderService:
           >>> client.order.get(123)
 
         """
-        response = self._client.request("get", f"/v2/orders/{id}").json()
+        response = self._client.request("get", f"v2/orders/{id}").json()
         return Order(**response)
 
     def get_all(

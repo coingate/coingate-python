@@ -1,6 +1,6 @@
 from datetime import datetime
 from decimal import Decimal
-from typing import List
+from typing import List, Optional
 
 from pydantic import BaseModel
 
@@ -43,7 +43,7 @@ class Checkout(BaseOrder):
 class Order(BaseOrder):
     orderable_type: str
     orderable_id: int
-    payment_address: str
+    payment_address: Optional[str]
 
 
 class PaginatedOrders(BaseModel):

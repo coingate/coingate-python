@@ -1,6 +1,6 @@
 from datetime import datetime
 from decimal import Decimal
-from typing import List
+from typing import List, Optional
 
 from pydantic import BaseModel
 
@@ -38,7 +38,7 @@ class Refund(BaseModel):
     refund_amount: Decimal
     address: str
     status: str
-    memo: str
+    memo: Optional[str]
     created_at: datetime
     order: RefundOrder
     refund_currency: RefundCurrency
@@ -51,7 +51,7 @@ class PaginatedRefundsRefund(BaseModel):
     request_amount: str
     refund_amount: str
     crypto_address: str
-    crypto_address_memo: str
+    crypto_address_memo: Optional[str]
     status: str
     order: RefundOrder
     refund_currency: RefundCurrency

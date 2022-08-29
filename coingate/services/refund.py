@@ -56,7 +56,7 @@ class RefundService:
                 "email": email,
                 "ledger_account_id": ledger_account_id,
             },
-        )
+        ).json()
 
         return Refund(**res)
 
@@ -73,7 +73,7 @@ class RefundService:
           >>> client.refund.get_order_refund(1, 1)
 
         """
-        res = self._client.request("get", f"v2/orders/{order_id}/refunds/{id}")
+        res = self._client.request("get", f"v2/orders/{order_id}/refunds/{id}").json()
         return Refund(**res)
 
     def get_order_refunds(
@@ -99,7 +99,7 @@ class RefundService:
                 "page": page,
                 "per_page": per_page,
             },
-        )
+        ).json()
 
         return PaginatedRefunds(**res)
 
@@ -120,6 +120,6 @@ class RefundService:
             "get",
             "v2/refunds",
             data={"page": page, "per_page": per_page},
-        )
+        ).json()
 
         return PaginatedRefunds(**res)
