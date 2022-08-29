@@ -1,5 +1,6 @@
 from datetime import datetime
 from decimal import Decimal
+from typing import List
 
 from pydantic import BaseModel
 
@@ -50,4 +51,4 @@ class PaginatedOrders(BaseModel):
     per_page: int
     total_order: int
     total_pages: int
-    orders: list[Order]
+    orders: List[Order]

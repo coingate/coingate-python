@@ -1,11 +1,11 @@
 from datetime import datetime
 from decimal import Decimal
-from typing import NewType, Optional
+from typing import Dict, List, NewType, Optional
 
 from pydantic import BaseModel
 
 NestedCurrencyObject = NewType(
-    "NestedCurrencyObject", dict[str, dict[str, Optional[Decimal]]]
+    "NestedCurrencyObject", Dict[str, Dict[str, Optional[Decimal]]]
 )
 
 
@@ -46,7 +46,7 @@ class Currency(BaseModel):
     disabled: bool
     disabled_message: Optional[str]
     merchant: Optional[CurrencyMerchant]
-    platforms: Optional[list[CurrencyPlatform]]
+    platforms: Optional[List[CurrencyPlatform]]
 
 
 class PlatformCurrency(BaseModel):
@@ -62,4 +62,4 @@ class Platform(BaseModel):
     id_name: str
     disabled: bool
     disabled_message: Optional[str]
-    currencies: list[PlatformCurrency]
+    currencies: List[PlatformCurrency]

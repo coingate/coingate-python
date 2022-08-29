@@ -1,5 +1,5 @@
 import posixpath
-from typing import Any, Optional, Union
+from typing import Any, Dict, Optional, Union
 
 from coingate.services.order import OrderService
 from coingate.services.refund import RefundService
@@ -49,8 +49,8 @@ class CoinGate:
         method: Union[str, bytes],
         endpoint: str,
         *,
-        data: Optional[dict[str, Any]] = None,
-        params: Optional[dict[str, Any]] = None,
+        data: Optional[Dict[str, Any]] = None,
+        params: Optional[Dict[str, Any]] = None,
     ):
         url = self._build_path_to_endpoint(endpoint)
         return self._http_client.request(method, url, data=data, params=params)

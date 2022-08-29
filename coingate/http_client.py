@@ -1,4 +1,4 @@
-from typing import Any, Optional, Union
+from typing import Any, Dict, Optional, Union
 
 import requests
 
@@ -38,8 +38,8 @@ class HTTPClient:
         method: Union[str, bytes],
         url: Union[str, bytes],
         *,
-        data: Optional[dict[str, Any]] = None,
-        params: Optional[dict[str, Any]] = None,
+        data: Optional[Dict[str, Any]] = None,
+        params: Optional[Dict[str, Any]] = None,
     ) -> requests.Response:
         headers = {}
         if method in ("post", "patch") or data is not None:

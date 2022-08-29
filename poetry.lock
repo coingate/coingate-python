@@ -333,7 +333,7 @@ docs = ["jaraco.tidelift (>=1.4)", "rst.linker (>=1.9)", "jaraco.packaging (>=9)
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.7"
-content-hash = "92e2eca0e2173b3324719339a8a9294e8a965de15e90232abe36ecb6f110d734"
+content-hash = "47010571adcb20f630e7f819676b8fda592c86f23c703dd1f7c10f84a760da48"
 
 [metadata.files]
 atomicwrites = [

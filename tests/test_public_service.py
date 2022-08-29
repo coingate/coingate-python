@@ -1,15 +1,11 @@
 from datetime import datetime
 from decimal import Decimal
-from typing import Literal, Optional, Union
+from typing import Optional, Union
 
 import pytest
-from coingate.resources.public import (
-    Currency,
-    ExchangesRates,
-    ExchangeTrader,
-    Ping,
-    Platform,
-)
+from coingate.resources.public import (Currency, ExchangesRates,
+                                       ExchangeTrader, Ping, Platform)
+from typing_extensions import Literal
 
 from tests.base_test_case import BaseTestCase
 

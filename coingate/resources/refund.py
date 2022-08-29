@@ -1,5 +1,6 @@
 from datetime import datetime
 from decimal import Decimal
+from typing import List
 
 from pydantic import BaseModel
 
@@ -41,7 +42,7 @@ class Refund(BaseModel):
     created_at: datetime
     order: RefundOrder
     refund_currency: RefundCurrency
-    transactions: list
+    transactions: List
     ledger_account: RefundLedgerAccount
 
 
@@ -61,4 +62,4 @@ class PaginatedRefunds(BaseModel):
     per_page: int
     total_refunds: int
     total_pages: int
-    refunds: list[PaginatedRefundsRefund]
+    refunds: List[PaginatedRefundsRefund]

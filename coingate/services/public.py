@@ -1,14 +1,10 @@
 from decimal import Decimal
-from typing import TYPE_CHECKING, Any, Literal, Optional, Union
+from typing import TYPE_CHECKING, Any, Dict, List, Optional, Union
 
-from ..resources.public import (
-    Currency,
-    ExchangesRates,
-    ExchangeTrader,
-    NestedCurrencyObject,
-    Ping,
-    Platform,
-)
+from typing_extensions import Literal
+
+from ..resources.public import (Currency, ExchangesRates, ExchangeTrader,
+                                NestedCurrencyObject, Ping, Platform)
 
 if TYPE_CHECKING:
     from ..client import CoinGate
@@ -112,7 +108,7 @@ class PublicService:
             else NestedCurrencyObject(response)
         )
 
-    def _get_exchange_rates(self, sideType: Optional[str] = None) -> dict[str, Any]:
+    def _get_exchange_rates(self, sideType: Optional[str] = None) -> Dict[str, Any]:
         endpoint = "v2/rates" if sideType is None else f"v2/rates/{sideType}"
         return self._client.request("get", endpoint).json()
 
@@ -153,7 +149,7 @@ class PublicService:
         merchant_pay: bool,
         merchant_receive: bool,
         kind: Literal["crypto", "fiat"],
-    ) -> list[Currency]:
+    ) -> List[Currency]:
         """Retrieves all currencies.
 
         :param bool `native`
@@ -162,7 +158,7 @@ class PublicService:
         :param bool `merchant_receive`
         :param Literal["crypto", "fiat"] `kind`
 
-        :rtype list[:class:`<coingate.resources.public.Currency>`]
+        :rtype List[:class:`<coingate.resources.public.Currency>`]
 
         Basic Usage::
           >>> client = CoinGate()
@@ -183,12 +179,12 @@ class PublicService:
 
         return [Currency(**currency) for currency in response]
 
-    def get_platforms(self, enabled: bool) -> list[Platform]:
+    def get_platforms(self, enabled: bool) -> List[Platform]:
         """Get all platforms
 
         :param bool `enabled`: List only enabled platforms
 
-        :rtype list[:class:`<coingate.resources.public.Platform>`]
+        :rtype List[:class:`<coingate.resources.public.Platform>`]
 
         Basic Usage::
           >>> client = CoinGate()

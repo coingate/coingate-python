@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import List, Optional
 
 
 class ApiException(Exception):
@@ -7,7 +7,7 @@ class ApiException(Exception):
         reason: str,
         status_code: int,
         message: Optional[str],
-        errors: Optional[list[str]],
+        errors: Optional[List[str]],
     ) -> None:
         self.reason = reason
         self.status_code = status_code
@@ -18,7 +18,7 @@ class ApiException(Exception):
 
     def __str__(self) -> str:
         errors = self._join_errors()
-        return f"(status_code={self.status_code}, reason={self.reason}, message={self.message}, {errors=})"
+        return f"(status_code={self.status_code}, reason={self.reason}, message={self.message}, errors={errors})"
 
     def _join_errors(self) -> Optional[str]:
         return ", ".join(self.errors) if self.errors is not None else None
@@ -30,7 +30,7 @@ class AbstractClientException(ApiException):
         reason: str,
         status_code: int,
         message: Optional[str],
-        errors: Optional[list[str]],
+        errors: Optional[List[str]],
     ) -> None:
         super().__init__(reason, status_code, message, errors)
 
@@ -45,7 +45,7 @@ class BadCredentialsException(AbstractClientException):
         reason: str,
         status_code: int,
         message: Optional[str],
-        errors: Optional[list[str]],
+        errors: Optional[List[str]],
     ) -> None:
         super().__init__(reason, status_code, message, errors)
 
@@ -56,7 +56,7 @@ class BadAuthTokenException(AbstractClientException):
         reason: str,
         status_code: int,
         message: Optional[str],
-        errors: Optional[list[str]],
+        errors: Optional[List[str]],
     ) -> None:
         super().__init__(reason, status_code, message, errors)
 
@@ -67,7 +67,7 @@ class PageNotFoundException(AbstractClientException):
         reason: str,
         status_code: int,
         message: Optional[str],
-        errors: Optional[list[str]],
+        errors: Optional[List[str]],
     ) -> None:
         super().__init__(reason, status_code, message, errors)
 
@@ -78,7 +78,7 @@ class RecordNotFoundException(AbstractClientException):
         reason: str,
         status_code: int,
         message: Optional[str],
-        errors: Optional[list[str]],
+        errors: Optional[List[str]],
     ) -> None:
         super().__init__(reason, status_code, message, errors)
 
@@ -89,7 +89,7 @@ class InternalServerErrorException(AbstractClientException):
         reason: str,
         status_code: int,
         message: Optional[str],
-        errors: Optional[list[str]],
+        errors: Optional[List[str]],
     ) -> None:
         super().__init__(reason, status_code, message, errors)
 
@@ -100,7 +100,7 @@ class RateLimitException(AbstractClientException):
         reason: str,
         status_code: int,
         message: Optional[str],
-        errors: Optional[list[str]],
+        errors: Optional[List[str]],
     ) -> None:
         super().__init__(reason, status_code, message, errors)
 
@@ -111,7 +111,7 @@ class OrderIsNotValidException(AbstractClientException):
         reason: str,
         status_code: int,
         message: Optional[str],
-        errors: Optional[list[str]],
+        errors: Optional[List[str]],
     ) -> None:
         super().__init__(reason, status_code, message, errors)
 
@@ -122,6 +122,6 @@ class OrderNotFoundException(AbstractClientException):
         reason: str,
         status_code: int,
         message: Optional[str],
-        errors: Optional[list[str]],
+        errors: Optional[List[str]],
     ) -> None:
         super().__init__(reason, status_code, message, errors)
