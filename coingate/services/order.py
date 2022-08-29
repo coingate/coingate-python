@@ -76,7 +76,7 @@ class OrderService:
         *,
         lightning_network: Optional[bool] = None,
         purchaser_email: Optional[str] = None,
-        platform_id: Optional[int],
+        platform_id: Optional[int] = None,
     ) -> Checkout:
         """Placing created order with pre-selected payment currency (BTC, LTC, ETH, etc). Display payment_address and pay_amount for shopper or redirect to payment_url. Can be used to white-label invoices
 

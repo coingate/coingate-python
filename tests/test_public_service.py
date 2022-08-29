@@ -7,7 +7,7 @@ from coingate.resources.public import (Currency, ExchangesRates,
                                        ExchangeTrader, Ping, Platform)
 from typing_extensions import Literal
 
-from tests.base_test_case import BaseTestCase
+from .base_test_case import BaseTestCase
 
 
 class TestPublicService(BaseTestCase):

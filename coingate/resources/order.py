@@ -37,7 +37,7 @@ class Checkout(BaseOrder):
     pay_amount: Decimal
     expire_at: datetime
     payment_address: str
-    platform: CheckoutPlatform
+    platform: Optional[CheckoutPlatform]
 
 
 class Order(BaseOrder):
