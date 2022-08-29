@@ -1,0 +1,32 @@
+name: Static Check, Tests
+
+on: [push]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: [3.9]
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Python ${{ matrix.python }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python }}
+
+      - name: Install poetry
+        uses: abatilo/actions-poetry@v2.0.0
+        with:
+          poetry-version: 1.1.14
+
+      - name: Install dependencies
+        run: poetry install
+
+      - name: Run static checker (mypy)
+        run: poetry run mypy coingate
+
+      - name: Run tests
+        run: poetry run pytest
