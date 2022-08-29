@@ -40,7 +40,7 @@ class RefundService:
 
         Basic Usage::
           >>> client = CoinGate('YOUR_API_KEY')
-          >>> client.refund.create_order_refund(1, Decimal('10'), 'addy', 1, 1, 'refund', email='email@email.com', 'id')
+          >>> client.refund.create_order_refund(1, Decimal('10'), 'addy', 1, 1, 'refund', 'email@email.com', 'id')
 
         """
         res = self._client.request(

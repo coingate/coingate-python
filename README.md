@@ -40,6 +40,74 @@ If you planning to use only Public API endpoints, you can initialize client with
 >>> client = CoinGate()
 ```
 
+## Payment Gateway API
+
+### Create Order
+Create order at CoinGate and redirect shopper to invoice (payment_url). This is private API endpoint and requires authentication.
+
+```py
+>>> client.order.create(Decimal('10'), 'EUR', 'EUR')
+NewOrder(...)
+```
+
+### Checkout
+Placing created order with pre-selected payment currency (BTC, LTC, ETH, etc). Display payment_address and pay_amount for shopper or redirect to payment_url. Can be used to white-label invoices. This is private API endpoint and requires authentication.
+
+```py
+>>> client.order.checkout(123, 'EUR')
+Checkout(...)
+```
+
+### Get Order
+Retrieves a specific order. This is private API endpoint and requires authentication.
+
+```py
+>>> client.order.get(123)
+Order(...)
+```
+
+### List Orders
+Retrieving information of all placed orders. This is private API endpoint and requires authentication.
+
+```py
+>>> client.order.get_all(123)
+PaginatedOrders(...)
+```
+
+## Refunds API
+
+### Create Order Refund
+Creates a refund for an order. This is private API endpoint and requires authentication.
+
+```py
+>>> client.refund.create_order_refund(1, Decimal('10'), 'addy', 1, 1, 'refund', 'email@email.com', 'id')
+Refund(...)
+```
+
+### Get Order Refund
+Retrieves a specific refund for an order. This is private API endpoint and requires authentication.
+
+```py
+>>> client.refund.get_order_refund(1, 1)
+Refund(...)
+```
+
+### Get Order Refunds
+Retrieves all refunds for an order. This is private API endpoint and requires authentication.
+
+```py
+>>> client.refund.get_order_refunds(1)
+PaginatedRefunds(...)
+```
+
+### Get Refunds
+Retrieves all refunds. This is private API endpoint and requires authentication.
+
+```py
+>>> client.refund.get_refunds()
+PaginatedRefunds(...)
+```
+
 ## Public API
 
 ### Get Exchange Rate
