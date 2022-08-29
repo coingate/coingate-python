@@ -3,8 +3,13 @@ from decimal import Decimal
 from typing import Optional, Union
 
 import pytest
-from coingate.resources.public import (Currency, ExchangesRates,
-                                       ExchangeTrader, Ping, Platform)
+from coingate.resources.public import (
+    Currency,
+    ExchangesRates,
+    ExchangeTrader,
+    Ping,
+    Platform,
+)
 from typing_extensions import Literal
 
 from .base_test_case import BaseTestCase
