@@ -49,6 +49,6 @@ class Order(BaseOrder):
 class PaginatedOrders(BaseModel):
     current_page: int
     per_page: int
-    total_order: int
+    total_orders: int
     total_pages: int
     orders: List[Order]
