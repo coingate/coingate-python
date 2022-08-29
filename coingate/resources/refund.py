@@ -48,8 +48,8 @@ class Refund(BaseModel):
 
 class PaginatedRefundsRefund(BaseModel):
     id: int
-    request_amount: str
-    refund_amount: str
+    request_amount: Decimal
+    refund_amount: Decimal
     crypto_address: str
     crypto_address_memo: Optional[str]
     status: str

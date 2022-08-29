@@ -43,19 +43,41 @@ If you planning to use only Public API endpoints, you can initialize client with
 ## Payment Gateway API
 
 ### Create Order
-Create order at CoinGate and redirect shopper to invoice (payment_url). This is private API endpoint and requires authentication.
+Create order at CoinGate and redirect shopper to invoice (`payment_url`). This is private API endpoint and requires authentication.
 
 ```py
 >>> client.order.create(Decimal('10'), 'EUR', 'EUR')
-NewOrder(...)
+NewOrder(
+    id=1,
+    status='new',
+    do_not_convert=False,
+    price_currency='EUR',
+    price_ammount=Decimal('10'),
+    lightning_network=False,
+    receive_currency='EUR',
+    receive_amount=Decimal('10'),
+    created_at=datetime(2022, 10, 10, 12, 23, 22),
+    order_id='',
+    payment_url='',
+    underpaid_amount=Decimal('0.000543'),
+    overpaid_amount=Decimal('0.000543'),
+    is_refundable=True,
+    token='token'
+)
 ```
 
 ### Checkout
-Placing created order with pre-selected payment currency (BTC, LTC, ETH, etc). Display payment_address and pay_amount for shopper or redirect to payment_url. Can be used to white-label invoices. This is private API endpoint and requires authentication.
+Placing created order with pre-selected payment currency (BTC, LTC, ETH, etc). Display `payment_address` and `pay_amount` for shopper or redirect to `payment_url`. Can be used to white-label invoices. This is private API endpoint and requires authentication.
 
 ```py
 >>> client.order.checkout(123, 'EUR')
-Checkout(...)
+Checkout(
+    pay_currency='EUR',
+    pay_amount=Decimal('10'),
+    expire_at=datetime(2022, 10, 10, 12, 23, 22),
+    payment_address='addy',
+    platform=CheckoutPlatform(id=1, title='title', id_name='id_name')
+)
 ```
 
 ### Get Order
@@ -63,7 +85,25 @@ Retrieves a specific order. This is private API endpoint and requires authentica
 
 ```py
 >>> client.order.get(123)
-Order(...)
+Order(
+    id=123,
+    status='new',
+    do_not_convert=False,
+    price_currency='EUR',
+    price_ammount=Decimal('10'),
+    lightning_network=False,
+    receive_currency='EUR',
+    receive_amount=Decimal('10'),
+    created_at=datetime(2022, 10, 10, 12, 23, 22),
+    order_id='',
+    payment_url='',
+    underpaid_amount=Decimal('0.000543'),
+    overpaid_amount=Decimal('0.000543'),
+    is_refundable=True,
+    orderable_type='order',
+    orderable_id=1,
+    payment_address='addy'
+)
 ```
 
 ### List Orders
@@ -71,7 +111,33 @@ Retrieving information of all placed orders. This is private API endpoint and re
 
 ```py
 >>> client.order.get_all(123)
-PaginatedOrders(...)
+PaginatedOrders(
+    current_page=1,
+    per_page=100,
+    total_orders=500,
+    total_pages=5,
+    orders=[
+        Order(
+            id=123,
+            status='new',
+            do_not_convert=False,
+            price_currency='EUR',
+            price_ammount=Decimal('10'),
+            lightning_network=False,
+            receive_currency='EUR',
+            receive_amount=Decimal('10'),
+            created_at=datetime(2022, 10, 10, 12, 23, 22),
+            order_id='',
+            payment_url='',
+            underpaid_amount=Decimal('0.000543'),
+            overpaid_amount=Decimal('0.000543'),
+            is_refundable=True,
+            orderable_type='order',
+            orderable_id=1,
+            payment_address='addy'
+        )
+    ]
+)
 ```
 
 ## Refunds API
@@ -81,7 +147,18 @@ Creates a refund for an order. This is private API endpoint and requires authent
 
 ```py
 >>> client.refund.create_order_refund(1, Decimal('10'), 'addy', 1, 1, 'refund', 'email@email.com', 'id')
-Refund(...)
+Refund(
+    id=1,
+    request_amount=Decimal('10'),
+    refund_amount=Decimal('10'),
+    address='addy',
+    status='new',
+    memo=None,
+    created_at=datetime(2022, 10, 10, 12, 23, 22),
+    order=RefundOrder(id=1),
+    transactions=['tx_id'],
+    ledger_account=RefundLedgerAccount(id=1, currency=RefundLedgerAccountCurrency(id=1, title='Bitcoin', symbol='BTC'))
+)
 ```
 
 ### Get Order Refund
@@ -89,7 +166,18 @@ Retrieves a specific refund for an order. This is private API endpoint and requi
 
 ```py
 >>> client.refund.get_order_refund(1, 1)
-Refund(...)
+Refund(
+    id=1,
+    request_amount=Decimal('10'),
+    refund_amount=Decimal('10'),
+    address='addy',
+    status='new',
+    memo=None,
+    created_at=datetime(2022, 10, 10, 12, 23, 22),
+    order=RefundOrder(id=1),
+    transactions=['tx_id'],
+    ledger_account=RefundLedgerAccount(id=1, currency=RefundLedgerAccountCurrency(id=1, title='Bitcoin', symbol='BTC'))
+)
 ```
 
 ### Get Order Refunds
@@ -97,7 +185,29 @@ Retrieves all refunds for an order. This is private API endpoint and requires au
 
 ```py
 >>> client.refund.get_order_refunds(1)
-PaginatedRefunds(...)
+PaginatedRefunds(
+    current_page=1,
+    per_page=100,
+    total_refunds=500,
+    total_pages=5,
+    refunds=[
+        PaginatedRefundsRefund(
+            id=1,
+            request_amount=Decimal('10'),
+            refund_amount=Decimal('10'),
+            crypto_address='addy',
+            crypto_address_memo=None,
+            status='new',
+            order=RefundOrder(id=1),
+            refund_currency=RefundCurrency(
+                id=1,
+                title='Bitcoin',
+                symbol='BTC',
+                platform=RefundCurrencyPlatform(id=1, title='platform')
+            )
+        )
+    ]
+)
 ```
 
 ### Get Refunds
@@ -105,7 +215,29 @@ Retrieves all refunds. This is private API endpoint and requires authentication.
 
 ```py
 >>> client.refund.get_refunds()
-PaginatedRefunds(...)
+PaginatedRefunds(
+    current_page=1,
+    per_page=100,
+    total_refunds=500,
+    total_pages=5,
+    refunds=[
+        PaginatedRefundsRefund(
+            id=1,
+            request_amount=Decimal('10'),
+            refund_amount=Decimal('10'),
+            crypto_address='addy',
+            crypto_address_memo=None,
+            status='new',
+            order=RefundOrder(id=1),
+            refund_currency=RefundCurrency(
+                id=1,
+                title='Bitcoin',
+                symbol='BTC',
+                platform=RefundCurrencyPlatform(id=1, title='platform')
+            )
+        )
+    ]
+)
 ```
 
 ## Public API
