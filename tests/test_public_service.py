@@ -17,23 +17,23 @@ from .base_test_case import BaseTestCase
 
 class TestPublicService(BaseTestCase):
     @pytest.mark.parametrize(
-        "from_currency,to_currency,expectedType",
+        "from_currency,to_currency,expected_type",
         [("ETH", "EUR", Decimal), ("EUR", "BTC", Decimal), ("NAN", "NAN", None)],
     )
     def test_get_exchange_rate_for_merchant(
-        self, from_currency: str, to_currency: str, expectedType: Optional[Decimal]
+        self, from_currency: str, to_currency: str, expected_type: Optional[Decimal]
     ):
         rate = self.client.public.get_exchange_rate_for_merchant(
             from_currency, to_currency
         )
 
-        if expectedType is not None:
-            assert type(rate) is expectedType
+        if expected_type is not None:
+            assert type(rate) is expected_type
         else:
-            assert rate is expectedType
+            assert rate is expected_type
 
     @pytest.mark.parametrize(
-        "kind,from_currency,to_currency,expectedType",
+        "kind,from_currency,to_currency,expected_type",
         [
             ("buy", "ETH", "EUR", Decimal),
             ("sell", "BTC", "EUR", Decimal),
