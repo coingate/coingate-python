@@ -45,16 +45,16 @@ class TestPublicService(BaseTestCase):
         kind: Literal["buy", "sell"],
         from_currency: str,
         to_currency: str,
-        expectedType: Optional[Decimal],
+        expected_type: Optional[Decimal],
     ):
         rate = self.client.public.get_exchange_rate_for_trader(
             kind, from_currency, to_currency
         )
 
-        if expectedType is not None:
-            assert type(rate) is expectedType
+        if expected_type is not None:
+            assert type(rate) is expected_type
         else:
-            assert rate is expectedType
+            assert rate is expected_type
 
     def test_get_all_exchange_rates(self):
         rates = self.client.public.get_all_exchange_rates()
@@ -71,7 +71,7 @@ class TestPublicService(BaseTestCase):
         assert rates is not None
 
     @pytest.mark.parametrize(
-        "kind,expectedType",
+        "kind,expected_type",
         [
             ("sell", dict),
             ("buy", dict),
@@ -81,11 +81,11 @@ class TestPublicService(BaseTestCase):
     def test_get_trader_exchange_rates(
         self,
         kind: Optional[Literal["buy", "sell"]],
-        expectedType: Union[dict, ExchangeTrader],
+        expected_type: Union[dict, ExchangeTrader],
     ):
         rates = self.client.public.get_trader_exchange_rates(kind)
 
-        assert type(rates) == expectedType
+        assert type(rates) == expected_type
 
     def test_ping(self):
         answer = self.client.public.ping()
