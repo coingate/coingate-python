@@ -5,6 +5,9 @@ from coingate import CoinGate
 
 class BaseTestCase:
     def setup_method(self):
+        self.existing_big_order_id = (
+            34058  # This is hardcoded because we cant mark as paid in API
+        )
         self.client = CoinGate(
             api_key="HyW6QxVxFuFyfYNsTsmQftScWC2WYHUrSzCiqRX3", use_sanbox_mode=True
         )

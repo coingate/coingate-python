@@ -50,7 +50,7 @@ class PaginatedRefundsRefund(BaseModel):
     id: int
     request_amount: Decimal
     refund_amount: Decimal
-    crypto_address: str
+    crypto_address: Optional[str]
     crypto_address_memo: Optional[str]
     status: str
     order: RefundOrder
