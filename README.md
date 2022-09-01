@@ -481,3 +481,13 @@ If you decided to initialize client without API Key and you need to do it later,
 Ping(ping='pong', time='2017-12-13T19:07:18+00:00')
 >>> client.set_api_key('YOUR_API_KEY')
 ```
+
+## Attention plugin developers
+Are you writing a plugin that integrates CoinGate and embeds our library? Then please use the setAppInfo function to identify your plugin. For example:
+
+```py
+>>> from coingate import Coingate
+>>> coingate.set_app_info("MyAwesomePlugin", "1.0.0")
+```
+
+The method should be called once, before any request is sent to the API. The second parameter is optional.

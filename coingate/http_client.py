@@ -2,6 +2,8 @@ from typing import Any, Dict, Optional, Union
 
 import requests
 
+from coingate import __version__
+
 from . import exceptions
 
 
@@ -10,6 +12,8 @@ class HTTPClient:
         self._api_key = api_key
         self._session = requests.Session()
         self._timeout: Optional[int] = 60
+
+        self.update_user_agent()
 
         if api_key is not None:
             self._update_auth_headers(api_key)
@@ -32,6 +36,16 @@ class HTTPClient:
 
     def _update_auth_headers(self, value: Optional[str]) -> None:
         self._session.headers.update({"Authorization": f"Token {value}"})
+
+    def update_user_agent(
+        self, *, name: Optional[str] = None, version: Optional[str] = None
+    ) -> None:
+        app_info = f", {name} {f'v{version}' if version else ''}" if name else ""
+        user_agent = f"CoinGate/v2 (Python Library v{__version__}{app_info or ''})"
+        if name is not None:
+            user_agent += f", {name} v{version}"
+
+        self._session.headers.update({"User-Agent": user_agent})
 
     def request(
         self,

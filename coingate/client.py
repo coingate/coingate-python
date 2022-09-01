@@ -44,6 +44,9 @@ class CoinGate:
     def set_timeout(self, timeout: Optional[int]):
         self._http_client.timeout = timeout
 
+    def set_app_info(self, name: str, *, version: str):
+        self._http_client.update_user_agent(name=name, version=version)
+
     def request(
         self,
         method: Union[str, bytes],
