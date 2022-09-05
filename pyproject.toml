@@ -1,0 +1,39 @@
+[tool.poetry]
+name = "coingate-python"
+version = "0.1.0"
+description = "CoinGate Python SDK (API v2)"
+authors = ["Markas Klapovščiuk <markas@pointed.tech>"]
+license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/markkkkas/coingate-python"
+repository = "https://github.com/markkkkas/coingate-python"
+keywords = ["coingate"]
+packages = [
+    { include = "coingate" }
+]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+requests = "^2.28.1"
+pydantic = "^1.9.2"
+typing-extensions = "^4.3.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^7.1.2"
+mypy = "^0.971"
+black = "^22.6.0"
+types-requests = "^2.28.8"
+
+[tool.mypy]
+python_version = "3.6"
+check_untyped_defs = true
+ignore_missing_imports = true
+incremental = true
+follow_imports = "normal"
+warn_redundant_casts = true
+no_implicit_optional = true
+disallow_any_generics = false
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
