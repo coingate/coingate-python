@@ -2,12 +2,12 @@
 name = "coingate-python"
 version = "0.1.0"
 description = "CoinGate Python SDK (API v2)"
-authors = ["Markas Klapovščiuk <markas@pointed.tech>"]
+authors = ["CoinGate <info@coingate.com>"]
 license = "MIT"
 readme = "README.md"
 homepage = "https://github.com/markkkkas/coingate-python"
 repository = "https://github.com/markkkkas/coingate-python"
-keywords = ["coingate"]
+keywords = ["coingate","bitcoin","litecoin", "altcoin","merchant","gateway","payment"]
 packages = [
     { include = "coingate" }
 ]
