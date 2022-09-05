@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "coingate-python"
-version = "0.1.0"
+version = "1.0.0"
 description = "CoinGate Python SDK (API v2)"
 authors = ["CoinGate <info@coingate.com>"]
 license = "MIT"
