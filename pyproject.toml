@@ -1,12 +1,12 @@
 [tool.poetry]
-name = "coingate-python"
+name = "coingate-client"
 version = "1.0.0"
 description = "CoinGate Python SDK (API v2)"
 authors = ["CoinGate <info@coingate.com>"]
 license = "MIT"
 readme = "README.md"
-homepage = "https://github.com/markkkkas/coingate-python"
-repository = "https://github.com/markkkkas/coingate-python"
+homepage = "https://github.com/coingate/coingate-python"
+repository = "https://github.com/coingate/coingate-python"
 keywords = ["coingate","bitcoin","litecoin", "altcoin","merchant","gateway","payment"]
 packages = [
     { include = "coingate" }
