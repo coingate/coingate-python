@@ -110,7 +110,7 @@ Order(
 Retrieving information of all placed orders. This is private API endpoint and requires authentication.
 
 ```py
->>> client.order.get_all(123)
+>>> client.order.get_all()
 PaginatedOrders(
     current_page=1,
     per_page=100,
