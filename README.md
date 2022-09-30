@@ -1,8 +1,8 @@
-# CoinGate Python SDK (API v2)
+# CoinGate Python Client (API v2)
 
 ![StaticCheckAndTestCI](https://github.com/markkkkas/coingate-python/actions/workflows/static-check-tests.yml/badge.svg)
 
-This SDK provides conveniet way to communicate between CoinGate API v2 and your Python code.
+This Client provides conveniet way to communicate between CoinGate API v2 and your Python code.
 
 ## Requirements
 Python 3.7+
@@ -22,7 +22,7 @@ You can sign up for a CoinGate account at https://coingate.com for production an
 
 Please note, that for Sandbox you must generate separate API credentials on https://sandbox.coingate.com. API credentials generated on https://coingate.com will not work for Sandbox mode.
 
-Usage of SDK looks like:
+Usage of Client looks like:
 ```py
 >>> from coingate import CoinGate
 >>> client = CoinGate("YOUR_API_TOKEN")
@@ -39,6 +39,7 @@ If you planning to use only Public API endpoints, you can initialize client with
 >>> from coingate import CoinGate
 >>> client = CoinGate()
 ```
+Full documentation of the CoinGate API can be found [here](https://developer.coingate.com/reference/api-overview)
 
 ## Payment Gateway API
 
