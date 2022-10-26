@@ -295,6 +295,74 @@ PaginatedLedgerAccounts(
 )
 ```
 
+## Withdrawals API
+
+### Get Withdrawals
+Retrieves all withdrawals. This is private API endpoint and requires authentication.
+
+```py
+>>> client.withdrawal.get_all()
+PaginatedWithdrawals(
+    current_page=1,
+    per_page=100,
+    total_withdrawals=1000,
+    total_pages=10,
+    withdrawals=[
+        Withdrawal(
+            id=1,
+            status='active',
+            created_at=datetime('2022/10/10'),
+            completed_at=None,
+            currency=Currency(
+                id=1,
+                title='Bitcoin',
+                symbol='BTC'
+                payout_setting=PayoutSetting(
+                    id=1,
+                    title='somewhere',
+                    address='addy',
+                    currency=Currency(
+                        id=1,
+                        title='Bitcoin',
+                        symbol='BTC'
+                    )
+                ),
+                platform=None
+            )
+        )
+    ]
+)
+```
+
+### Get Withdrawal
+Retrieves withdrawal by ID. This is private API endpoint and requires authentication.
+
+```py
+>>> client.withdrawal.get_all()
+Withdrawal(
+    id=1,
+    status='active',
+    created_at=datetime('2022/10/10'),
+    completed_at=None,
+    currency=Currency(
+        id=1,
+        title='Bitcoin',
+        symbol='BTC'
+        payout_setting=PayoutSetting(
+            id=1,
+            title='somewhere',
+            address='addy',
+            currency=Currency(
+                id=1,
+                title='Bitcoin',
+                symbol='BTC'
+            )
+        ),
+        platform=None
+    )
+)
+```
+
 ## Public API
 
 ### Get Exchange Rate
