@@ -158,3 +158,14 @@ class LedgerAccountNotFoundException(AbstractClientException):
         errors: Optional[List[str]],
     ) -> None:
         super().__init__(reason, status_code, message, errors)
+
+
+class WithdrawalNotFoundException(AbstractClientException):
+    def __init__(
+        self,
+        reason: str,
+        status_code: int,
+        message: Optional[str],
+        errors: Optional[List[str]],
+    ) -> None:
+        super().__init__(reason, status_code, message, errors)

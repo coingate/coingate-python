@@ -1,6 +1,6 @@
 from datetime import datetime
 from decimal import Decimal
-from typing import List
+from typing import List, Optional
 
 from pydantic import BaseModel
 
@@ -20,32 +20,10 @@ class Withdrawal(BaseModel):
     status: str
     amount: Decimal
     created_at: datetime
-    completed_at: datetime
+    completed_at: Optional[datetime]
     currency: Currency
     payout_setting: PayoutSetting
-    platform: Platform
-
-
-class PaginatedWithdrawalPayoutSetting(BaseModel):
-    id: int
-    title: str
-    account_holder_name: str
-    routing_number: str
-    bank_name: str
-    bank_address: str
-    bank_city: str
-    bank_country: str
-    swift: str
-    iban: str
-
-
-class PaginatedWithdrawal(BaseModel):
-    id: int
-    status: str
-    amount: Decimal
-    created_at: datetime
-    currency: Currency
-    payout_setting: PaginatedWithdrawalPayoutSetting
+    platform: Optional[Platform]
 
 
 class PaginatedWithdrawals(BaseModel):
@@ -53,4 +31,4 @@ class PaginatedWithdrawals(BaseModel):
     per_page: int
     total_withdrawals: int
     total_pages: int
-    withdrawals: List[PaginatedWithdrawal]
+    withdrawals: List[Withdrawal]
