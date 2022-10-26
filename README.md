@@ -77,7 +77,7 @@ Checkout(
     pay_amount=Decimal('10'),
     expire_at=datetime(2022, 10, 10, 12, 23, 22),
     payment_address='addy',
-    platform=CheckoutPlatform(id=1, title='title', id_name='id_name')
+    platform=Platform(id=1, title='title', id_name='id_name')
 )
 ```
 
@@ -491,7 +491,7 @@ Get all platforms
 ```py
 >>> client.public.get_platforms(enabled=True)
 [
-    Platform(
+    PublicPlatform(
         id=1,
         title='Ethereum (ERC20)',
         id_name='ethereum',
@@ -503,7 +503,7 @@ Get all platforms
             PlatformCurrency(id=71, title='Basic Attention Token', symbol='BAT', enabled=True)
         ]
     ),
-    Platform(
+    PublicPlatform(
         id=2,
         title='Binance Chain (BEP2)',
         id_name='binance_chain',
