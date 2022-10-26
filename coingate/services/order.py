@@ -2,8 +2,8 @@ from datetime import datetime
 from decimal import Decimal
 from typing import TYPE_CHECKING, Optional
 
-from coingate.resources.order import Checkout, NewOrder, Order, PaginatedOrders
-from coingate.utils import date_to_str_or_none
+from ..resources.order import Checkout, NewOrder, Order, PaginatedOrders
+from ..utils import date_to_str_or_none
 
 if TYPE_CHECKING:
     from ..client import CoinGate

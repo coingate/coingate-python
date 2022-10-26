@@ -1,11 +1,10 @@
 import posixpath
 from typing import Any, Dict, Optional, Union
 
-from coingate.services.order import OrderService
-from coingate.services.refund import RefundService
-
 from .http_client import HTTPClient
+from .services.order import OrderService
 from .services.public import PublicService
+from .services.refund import RefundService
 
 
 class CoinGate:
