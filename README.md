@@ -241,6 +241,60 @@ PaginatedRefunds(
 )
 ```
 
+## Ledger API
+
+### Get Account
+Retrieves a specific ledger account. This is private API endpoint and requires authentication.
+
+```py
+>>> client.ledger.get()
+LedgerAccount(
+    id="ledger_id",
+    balance=Decimal('10'),
+    status='status',
+    currency=LedgerAccountCurrency(
+        id=1,
+        title='currency',
+        symbol='CUR'
+    )
+)
+```
+
+### List Accounts
+Retrieves all ledger accounts. This is private API endpoint and requires authentication.
+
+```py
+>>> client.ledger.get_all()
+PaginatedLedgerAccounts(
+    current_page=1,
+    per_page=100,
+    total_accounts=2,
+    total_pages=100,
+    accounts=[
+        LedgerAccount(
+            id="ledger_id",
+            balance=Decimal('10'),
+            status='status',
+            currency=LedgerAccountCurrency(
+                id=1,
+                title='currency',
+                symbol='CUR'
+            )
+        ),
+        LedgerAccount(
+            id="ledger_id_2",
+            balance=Decimal('11'),
+            status='status_2',
+            currency=LedgerAccountCurrency(
+                id=2,
+                title='currency_2',
+                symbol='CU2'
+            )
+        )
+    ]
+)
+```
+
 ## Public API
 
 ### Get Exchange Rate

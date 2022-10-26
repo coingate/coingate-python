@@ -1,3 +1,4 @@
+from decimal import Decimal
 from typing import List
 
 from pydantic import BaseModel
@@ -11,7 +12,7 @@ class LedgerAccountCurrency(BaseModel):
 
 class LedgerAccount(BaseModel):
     id: str
-    balance: str
+    balance: Decimal
     status: str
     currency: LedgerAccountCurrency
 
