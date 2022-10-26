@@ -2,9 +2,7 @@ import posixpath
 from typing import Any, Dict, Optional, Union
 
 from .http_client import HTTPClient
-from .services.order import OrderService
-from .services.public import PublicService
-from .services.refund import RefundService
+from .services import LedgerService, OrderService, PublicService, RefundService
 
 
 class CoinGate:
@@ -20,6 +18,7 @@ class CoinGate:
         self._order = OrderService(self)
         self._refund = RefundService(self)
         self._public = PublicService(self)
+        self._ledger = LedgerService(self)
 
     @property
     def order(self) -> OrderService:
@@ -32,6 +31,10 @@ class CoinGate:
     @property
     def public(self) -> PublicService:
         return self._public
+
+    @property
+    def ledger(self) -> LedgerService:
+        return self._ledger
 
     @property
     def is_sandbox_mode(self):

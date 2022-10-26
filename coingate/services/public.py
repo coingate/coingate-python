@@ -3,8 +3,14 @@ from typing import TYPE_CHECKING, Any, Dict, List, Optional, Union
 
 from typing_extensions import Literal
 
-from ..resources.public import (Currency, ExchangesRates, ExchangeTrader,
-                                NestedCurrencyObject, Ping, Platform)
+from ..resources.public import (
+    Currency,
+    ExchangesRates,
+    ExchangeTrader,
+    NestedCurrencyObject,
+    Ping,
+    Platform,
+)
 
 if TYPE_CHECKING:
     from ..client import CoinGate
