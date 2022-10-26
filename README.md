@@ -249,13 +249,13 @@ Retrieves a specific ledger account. This is private API endpoint and requires a
 ```py
 >>> client.ledger.get()
 LedgerAccount(
-    id="ledger_id",
+    id="01GBPW7M2G5XQK3BE50XQRA36E",
     balance=Decimal('10'),
-    status='status',
+    status='active',
     currency=LedgerAccountCurrency(
         id=1,
-        title='currency',
-        symbol='CUR'
+        title='Bitcoin',
+        symbol='BTC'
     )
 )
 ```
@@ -272,23 +272,23 @@ PaginatedLedgerAccounts(
     total_pages=100,
     accounts=[
         LedgerAccount(
-            id="ledger_id",
+            id="01GBPW7M2G5XQK3BE50XQRA36E",
             balance=Decimal('10'),
-            status='status',
+            status='active',
             currency=LedgerAccountCurrency(
                 id=1,
-                title='currency',
-                symbol='CUR'
+                title='Bitcoin',
+                symbol='BTC'
             )
         ),
         LedgerAccount(
-            id="ledger_id_2",
+            id="01GBPW7M2G5XQK3BE50XQRA36E",
             balance=Decimal('11'),
-            status='status_2',
+            status='active',
             currency=LedgerAccountCurrency(
                 id=2,
-                title='currency_2',
-                symbol='CU2'
+                title='Bitcoin',
+                symbol='BTC'
             )
         )
     ]
