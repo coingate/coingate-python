@@ -4,6 +4,8 @@ from typing import List, Optional
 
 from pydantic import BaseModel
 
+from .currency import Currency
+
 
 class RefundOrder(BaseModel):
     id: int
@@ -14,22 +16,13 @@ class RefundCurrencyPlatform(BaseModel):
     title: str
 
 
-class RefundCurrency(BaseModel):
-    id: int
-    title: str
-    symbol: str
+class RefundCurrency(Currency):
     platform: RefundCurrencyPlatform
-
-
-class RefundLedgerAccountCurrency(BaseModel):
-    id: int
-    title: str
-    symbol: str
 
 
 class RefundLedgerAccount(BaseModel):
     id: str
-    currency: RefundLedgerAccountCurrency
+    currency: Currency
 
 
 class Refund(BaseModel):

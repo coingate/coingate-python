@@ -3,18 +3,14 @@ from typing import List
 
 from pydantic import BaseModel
 
-
-class LedgerAccountCurrency(BaseModel):
-    id: int
-    title: str
-    symbol: str
+from .currency import Currency
 
 
 class LedgerAccount(BaseModel):
     id: str
     balance: Decimal
     status: str
-    currency: LedgerAccountCurrency
+    currency: Currency
 
 
 class PaginatedLedgerAccounts(BaseModel):

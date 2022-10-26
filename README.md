@@ -158,7 +158,7 @@ Refund(
     created_at=datetime(2022, 10, 10, 12, 23, 22),
     order=RefundOrder(id=1),
     transactions=['tx_id'],
-    ledger_account=RefundLedgerAccount(id=1, currency=RefundLedgerAccountCurrency(id=1, title='Bitcoin', symbol='BTC'))
+    ledger_account=RefundLedgerAccount(id=1, currency=Currency(id=1, title='Bitcoin', symbol='BTC'))
 )
 ```
 
@@ -177,7 +177,7 @@ Refund(
     created_at=datetime(2022, 10, 10, 12, 23, 22),
     order=RefundOrder(id=1),
     transactions=['tx_id'],
-    ledger_account=RefundLedgerAccount(id=1, currency=RefundLedgerAccountCurrency(id=1, title='Bitcoin', symbol='BTC'))
+    ledger_account=RefundLedgerAccount(id=1, currency=Currency(id=1, title='Bitcoin', symbol='BTC'))
 )
 ```
 
@@ -252,7 +252,7 @@ LedgerAccount(
     id="01GBPW7M2G5XQK3BE50XQRA36E",
     balance=Decimal('10'),
     status='active',
-    currency=LedgerAccountCurrency(
+    currency=Currency(
         id=1,
         title='Bitcoin',
         symbol='BTC'
@@ -275,7 +275,7 @@ PaginatedLedgerAccounts(
             id="01GBPW7M2G5XQK3BE50XQRA36E",
             balance=Decimal('10'),
             status='active',
-            currency=LedgerAccountCurrency(
+            currency=Currency(
                 id=1,
                 title='Bitcoin',
                 symbol='BTC'
@@ -285,7 +285,7 @@ PaginatedLedgerAccounts(
             id="01GBPW7M2G5XQK3BE50XQRA36E",
             balance=Decimal('11'),
             status='active',
-            currency=LedgerAccountCurrency(
+            currency=Currency(
                 id=2,
                 title='Bitcoin',
                 symbol='BTC'
@@ -424,7 +424,7 @@ Retrieves all currencies.
 ```py
 >>> client.public.get_currencies(native=True, enabled=True, merchant_pay=True, merchant_receive=True, kind="crypto")
 [
-    Currency(id=1,
+    PublicCurrency(id=1,
         title='Bitcoin',
         kind='crypto',
         native=True,
@@ -435,7 +435,7 @@ Retrieves all currencies.
             CurrencyPlatform(id=8, id_name='bitcoin', title='Bitcoin' enabled=True)
         ]
     ),
-    Currency(
+    PublicCurrency(
         id=2,
         title='Euro',
         kind='fiat',
@@ -446,7 +446,7 @@ Retrieves all currencies.
         merchant=CurrencyMerchant(price=True, pay=False, receive=True),
         platforms=None
     ),
-    Currency(
+    PublicCurrency(
         id=3,
         title='United States dollar',
         kind='fiat',
@@ -457,7 +457,7 @@ Retrieves all currencies.
         merchant=CurrencyMerchant(price=True, pay=False, receive=True),
         platforms=None
     ),
-    Currency(
+    PublicCurrency(
         id=4,
         title='British Pound',
         kind='fiat',
@@ -468,7 +468,7 @@ Retrieves all currencies.
         merchant=CurrencyMerchant(price=True, pay=False, receive=True),
         platforms=None
     ),
-    Currency(
+    PublicCurrency(
         id=5,
         title='Ethereum',
         kind='crypto',

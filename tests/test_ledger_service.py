@@ -2,11 +2,8 @@ from decimal import Decimal
 
 import pytest
 from coingate.exceptions import LedgerAccountNotFoundException
-from coingate.resources.ledger import (
-    LedgerAccount,
-    LedgerAccountCurrency,
-    PaginatedLedgerAccounts,
-)
+from coingate.resources.currency import Currency
+from coingate.resources.ledger import LedgerAccount, PaginatedLedgerAccounts
 
 from .base_test_case import BaseTestCase
 
@@ -34,7 +31,7 @@ class TestLedgerService(BaseTestCase):
 
         currency = account.currency
 
-        assert isinstance(currency, LedgerAccountCurrency)
+        assert isinstance(currency, Currency)
         assert isinstance(currency.id, int)
         assert isinstance(currency.title, str)
         assert isinstance(currency.symbol, str)
