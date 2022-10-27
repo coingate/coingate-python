@@ -247,7 +247,7 @@ PaginatedRefunds(
 Retrieves a specific ledger account. This is private API endpoint and requires authentication.
 
 ```py
->>> client.ledger.get()
+>>> client.ledger.get(1)
 LedgerAccount(
     id="01GBPW7M2G5XQK3BE50XQRA36E",
     balance=Decimal('10'),
