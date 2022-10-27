@@ -1,18 +1,11 @@
 from datetime import datetime
 from decimal import Decimal
-from typing import List, Optional
+from typing import Any, Dict, List, Optional
 
 from pydantic import BaseModel
 
 from .platform import Platform
 from .public import Currency
-
-
-class PayoutSetting(BaseModel):
-    id: int
-    title: str
-    address: str
-    currency: Currency
 
 
 class Withdrawal(BaseModel):
@@ -22,7 +15,7 @@ class Withdrawal(BaseModel):
     created_at: datetime
     completed_at: Optional[datetime]
     currency: Currency
-    payout_setting: PayoutSetting
+    payout_setting: Dict[str, Any]
     platform: Optional[Platform]
 
 

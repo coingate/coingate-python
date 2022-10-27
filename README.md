@@ -317,16 +317,16 @@ PaginatedWithdrawals(
                 id=1,
                 title='Bitcoin',
                 symbol='BTC'
-                payout_setting=PayoutSetting(
-                    id=1,
-                    title='somewhere',
-                    address='addy',
-                    currency=Currency(
-                        id=1,
-                        title='Bitcoin',
-                        symbol='BTC'
-                    )
-                ),
+                payout_setting={
+                    'id': 1,
+                    'title': 'somewhere',
+                    'address': 'addy',
+                    'currency': {
+                        'id': 1,
+                        'title': 'Bitcoin',
+                        'symbol': 'BTC'
+                    }
+                }
                 platform=None
             )
         )
@@ -338,7 +338,7 @@ PaginatedWithdrawals(
 Retrieves withdrawal by ID. This is private API endpoint and requires authentication.
 
 ```py
->>> client.withdrawal.get_all()
+>>> client.withdrawal.get(1)
 Withdrawal(
     id=1,
     status='active',
@@ -348,16 +348,16 @@ Withdrawal(
         id=1,
         title='Bitcoin',
         symbol='BTC'
-        payout_setting=PayoutSetting(
-            id=1,
-            title='somewhere',
-            address='addy',
-            currency=Currency(
-                id=1,
-                title='Bitcoin',
-                symbol='BTC'
-            )
-        ),
+        payout_setting={
+            'id': 1,
+            'title': 'somewhere',
+            'address': 'addy',
+            'currency': {
+                'id': 1,
+                'title': 'Bitcoin',
+                'symbol': 'BTC'
+            }
+        }
         platform=None
     )
 )

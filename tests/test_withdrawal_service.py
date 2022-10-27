@@ -4,11 +4,7 @@ from decimal import Decimal
 import pytest
 from coingate.exceptions import WithdrawalNotFoundException
 from coingate.resources.currency import Currency
-from coingate.resources.withdrawal import (
-    PaginatedWithdrawals,
-    PayoutSetting,
-    Withdrawal,
-)
+from coingate.resources.withdrawal import PaginatedWithdrawals, Withdrawal
 
 from .base_test_case import BaseTestCase
 
@@ -47,4 +43,3 @@ class TestWithdrawalService(BaseTestCase):
         assert isinstance(withdrawal.amount, Decimal)
         assert isinstance(withdrawal.created_at, datetime)
         assert isinstance(withdrawal.currency, Currency)
-        assert isinstance(withdrawal.payout_setting, PayoutSetting)
