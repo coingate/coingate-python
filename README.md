@@ -77,7 +77,7 @@ Checkout(
     pay_amount=Decimal('10'),
     expire_at=datetime(2022, 10, 10, 12, 23, 22),
     payment_address='addy',
-    platform=CheckoutPlatform(id=1, title='title', id_name='id_name')
+    platform=Platform(id=1, title='title', id_name='id_name')
 )
 ```
 
@@ -158,7 +158,7 @@ Refund(
     created_at=datetime(2022, 10, 10, 12, 23, 22),
     order=RefundOrder(id=1),
     transactions=['tx_id'],
-    ledger_account=RefundLedgerAccount(id=1, currency=RefundLedgerAccountCurrency(id=1, title='Bitcoin', symbol='BTC'))
+    ledger_account=RefundLedgerAccount(id=1, currency=Currency(id=1, title='Bitcoin', symbol='BTC'))
 )
 ```
 
@@ -177,7 +177,7 @@ Refund(
     created_at=datetime(2022, 10, 10, 12, 23, 22),
     order=RefundOrder(id=1),
     transactions=['tx_id'],
-    ledger_account=RefundLedgerAccount(id=1, currency=RefundLedgerAccountCurrency(id=1, title='Bitcoin', symbol='BTC'))
+    ledger_account=RefundLedgerAccount(id=1, currency=Currency(id=1, title='Bitcoin', symbol='BTC'))
 )
 ```
 
@@ -238,6 +238,128 @@ PaginatedRefunds(
             )
         )
     ]
+)
+```
+
+## Ledger API
+
+### Get Account
+Retrieves a specific ledger account. This is private API endpoint and requires authentication.
+
+```py
+>>> client.ledger.get(1)
+LedgerAccount(
+    id="01GBPW7M2G5XQK3BE50XQRA36E",
+    balance=Decimal('10'),
+    status='active',
+    currency=Currency(
+        id=1,
+        title='Bitcoin',
+        symbol='BTC'
+    )
+)
+```
+
+### List Accounts
+Retrieves all ledger accounts. This is private API endpoint and requires authentication.
+
+```py
+>>> client.ledger.get_all()
+PaginatedLedgerAccounts(
+    current_page=1,
+    per_page=100,
+    total_accounts=2,
+    total_pages=100,
+    accounts=[
+        LedgerAccount(
+            id="01GBPW7M2G5XQK3BE50XQRA36E",
+            balance=Decimal('10'),
+            status='active',
+            currency=Currency(
+                id=1,
+                title='Bitcoin',
+                symbol='BTC'
+            )
+        ),
+        LedgerAccount(
+            id="01GBPW7M2G5XQK3BE50XQRA36E",
+            balance=Decimal('11'),
+            status='active',
+            currency=Currency(
+                id=2,
+                title='Bitcoin',
+                symbol='BTC'
+            )
+        )
+    ]
+)
+```
+
+## Withdrawals API
+
+### Get Withdrawals
+Retrieves all withdrawals. This is private API endpoint and requires authentication.
+
+```py
+>>> client.withdrawal.get_all()
+PaginatedWithdrawals(
+    current_page=1,
+    per_page=100,
+    total_withdrawals=1000,
+    total_pages=10,
+    withdrawals=[
+        Withdrawal(
+            id=1,
+            status='active',
+            created_at=datetime('2022/10/10'),
+            completed_at=None,
+            currency=Currency(
+                id=1,
+                title='Bitcoin',
+                symbol='BTC'
+                payout_setting={
+                    'id': 1,
+                    'title': 'somewhere',
+                    'address': 'addy',
+                    'currency': {
+                        'id': 1,
+                        'title': 'Bitcoin',
+                        'symbol': 'BTC'
+                    }
+                }
+                platform=None
+            )
+        )
+    ]
+)
+```
+
+### Get Withdrawal
+Retrieves withdrawal by ID. This is private API endpoint and requires authentication.
+
+```py
+>>> client.withdrawal.get(1)
+Withdrawal(
+    id=1,
+    status='active',
+    created_at=datetime('2022/10/10'),
+    completed_at=None,
+    currency=Currency(
+        id=1,
+        title='Bitcoin',
+        symbol='BTC'
+        payout_setting={
+            'id': 1,
+            'title': 'somewhere',
+            'address': 'addy',
+            'currency': {
+                'id': 1,
+                'title': 'Bitcoin',
+                'symbol': 'BTC'
+            }
+        }
+        platform=None
+    )
 )
 ```
 
@@ -370,7 +492,7 @@ Retrieves all currencies.
 ```py
 >>> client.public.get_currencies(native=True, enabled=True, merchant_pay=True, merchant_receive=True, kind="crypto")
 [
-    Currency(id=1,
+    PublicCurrency(id=1,
         title='Bitcoin',
         kind='crypto',
         native=True,
@@ -381,7 +503,7 @@ Retrieves all currencies.
             CurrencyPlatform(id=8, id_name='bitcoin', title='Bitcoin' enabled=True)
         ]
     ),
-    Currency(
+    PublicCurrency(
         id=2,
         title='Euro',
         kind='fiat',
@@ -392,7 +514,7 @@ Retrieves all currencies.
         merchant=CurrencyMerchant(price=True, pay=False, receive=True),
         platforms=None
     ),
-    Currency(
+    PublicCurrency(
         id=3,
         title='United States dollar',
         kind='fiat',
@@ -403,7 +525,7 @@ Retrieves all currencies.
         merchant=CurrencyMerchant(price=True, pay=False, receive=True),
         platforms=None
     ),
-    Currency(
+    PublicCurrency(
         id=4,
         title='British Pound',
         kind='fiat',
@@ -414,7 +536,7 @@ Retrieves all currencies.
         merchant=CurrencyMerchant(price=True, pay=False, receive=True),
         platforms=None
     ),
-    Currency(
+    PublicCurrency(
         id=5,
         title='Ethereum',
         kind='crypto',
@@ -437,7 +559,7 @@ Get all platforms
 ```py
 >>> client.public.get_platforms(enabled=True)
 [
-    Platform(
+    PublicPlatform(
         id=1,
         title='Ethereum (ERC20)',
         id_name='ethereum',
@@ -449,7 +571,7 @@ Get all platforms
             PlatformCurrency(id=71, title='Basic Attention Token', symbol='BAT', enabled=True)
         ]
     ),
-    Platform(
+    PublicPlatform(
         id=2,
         title='Binance Chain (BEP2)',
         id_name='binance_chain',

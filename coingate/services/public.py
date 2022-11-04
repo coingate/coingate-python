@@ -3,8 +3,14 @@ from typing import TYPE_CHECKING, Any, Dict, List, Optional, Union
 
 from typing_extensions import Literal
 
-from ..resources.public import (Currency, ExchangesRates, ExchangeTrader,
-                                NestedCurrencyObject, Ping, Platform)
+from ..resources.public import (
+    ExchangesRates,
+    ExchangeTrader,
+    NestedCurrencyObject,
+    Ping,
+    PublicCurrency,
+    PublicPlatform,
+)
 
 if TYPE_CHECKING:
     from ..client import CoinGate
@@ -149,7 +155,7 @@ class PublicService:
         merchant_pay: bool,
         merchant_receive: bool,
         kind: Literal["crypto", "fiat"],
-    ) -> List[Currency]:
+    ) -> List[PublicCurrency]:
         """Retrieves all currencies.
 
         :param bool `native`
@@ -158,7 +164,7 @@ class PublicService:
         :param bool `merchant_receive`
         :param Literal["crypto", "fiat"] `kind`
 
-        :rtype List[:class:`<coingate.resources.public.Currency>`]
+        :rtype List[:class:`<coingate.resources.public.PublicCurrency>`]
 
         Basic Usage::
           >>> client = CoinGate()
@@ -177,9 +183,9 @@ class PublicService:
             },
         ).json()
 
-        return [Currency(**currency) for currency in response]
+        return [PublicCurrency(**currency) for currency in response]
 
-    def get_platforms(self, enabled: bool) -> List[Platform]:
+    def get_platforms(self, enabled: bool) -> List[PublicPlatform]:
         """Get all platforms
 
         :param bool `enabled`: List only enabled platforms
@@ -195,4 +201,4 @@ class PublicService:
             "get", "v2/platforms", params={"enabled": enabled}
         ).json()
 
-        return [Platform(**platform) for platform in response]
+        return [PublicPlatform(**platform) for platform in response]

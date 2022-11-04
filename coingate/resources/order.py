@@ -2,6 +2,7 @@ from datetime import datetime
 from decimal import Decimal
 from typing import List, Optional
 
+from coingate.resources.public import Platform
 from pydantic import BaseModel
 
 
@@ -26,18 +27,12 @@ class NewOrder(BaseOrder):
     token: str
 
 
-class CheckoutPlatform(BaseModel):
-    id: int
-    title: str
-    id_name: str
-
-
 class Checkout(BaseOrder):
     pay_currency: str
     pay_amount: Decimal
     expire_at: datetime
     payment_address: str
-    platform: Optional[CheckoutPlatform]
+    platform: Optional[Platform]
 
 
 class Order(BaseOrder):

@@ -4,6 +4,9 @@ from typing import Dict, List, NewType, Optional
 
 from pydantic import BaseModel
 
+from .currency import Currency
+from .platform import Platform
+
 NestedCurrencyObject = NewType(
     "NestedCurrencyObject", Dict[str, Dict[str, Optional[Decimal]]]
 )
@@ -30,18 +33,12 @@ class CurrencyMerchant(BaseModel):
     receive: bool
 
 
-class CurrencyPlatform(BaseModel):
-    id: int
-    id_name: str
-    title: str
+class CurrencyPlatform(Platform):
     enabled: bool
 
 
-class Currency(BaseModel):
-    id: int
-    title: str
+class PublicCurrency(Currency):
     kind: str
-    symbol: str
     native: bool
     disabled: bool
     disabled_message: Optional[str]
@@ -49,17 +46,11 @@ class Currency(BaseModel):
     platforms: Optional[List[CurrencyPlatform]]
 
 
-class PlatformCurrency(BaseModel):
-    id: int
-    title: str
-    symbol: str
+class PlatformCurrency(Currency):
     enabled: bool
 
 
-class Platform(BaseModel):
-    id: int
-    title: str
-    id_name: str
+class PublicPlatform(Platform):
     disabled: bool
     disabled_message: Optional[str]
     currencies: List[PlatformCurrency]

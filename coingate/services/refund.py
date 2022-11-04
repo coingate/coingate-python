@@ -1,7 +1,7 @@
 from decimal import Decimal
 from typing import TYPE_CHECKING, Optional
 
-from coingate.resources.refund import PaginatedRefunds, Refund
+from ..resources.refund import PaginatedRefunds, Refund
 
 if TYPE_CHECKING:
     from ..client import CoinGate
