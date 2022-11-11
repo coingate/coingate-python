@@ -74,7 +74,7 @@ class TestOrderService(BaseTestCase):
 
     @pytest.mark.parametrize(
         "pay_currency,should_raise",
-        [("EUR", True), ("BTC", False), ("ETH", False), ("USD", True)],
+        [("EUR", True), ("BTC", False), ("USD", True)],
     )
     def test_checkout_with_valid_order(self, pay_currency: str, should_raise: bool):
         order = self._create_test_order()
